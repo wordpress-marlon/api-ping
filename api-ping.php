@@ -9,6 +9,8 @@
 * Author URL: http://marlonfalcon.cl 
  * 
  */
+date_default_timezone_set('Europe/Madrid');
+
 function error_handler($errno, $errstr, $errfile, $errline)
 {
     if( ($errno & error_reporting()) > 0 )
@@ -30,13 +32,13 @@ function w_ping($slug){
             $fp = fsockopen($host,$port,$errCode,$errno,$waitTimeoutInSeconds);
             }
         catch(\ErrorException $e) { //used back-slash for global namespace
-            return "No Funciona la ip: ".$host;
+            return date('l jS \of F Y h:i:s A') . " : No Funciona la ip: ".$host;
         }
 
         if($fp){   
-            return "Funciona la ip: ".$host;
+            return date('l jS \of F Y h:i:s A') . " :  Funciona la ip: ".$host;
         }
-        
+
         fclose($fp);
          
     
